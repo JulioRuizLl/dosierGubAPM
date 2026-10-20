@@ -1,7 +1,7 @@
 /* Dosier gubernativo APM · funcionamiento sin conexión.
    Siempre intenta descargar la versión más reciente; si no hay conexión, usa la última guardada. */
-const CACHE = 'dosier-apm-v1';
-const CORE = ['./', 'index.html', 'manifest.webmanifest', 'icon-192.png', 'icon-512.png', 'apple-touch-icon.png'];
+const CACHE = 'dosier-apm-v4';
+const CORE = ['./', 'index.html', 'manifest.webmanifest', 'icon-192.png', 'icon-512.png', 'apple-touch-icon.png', 'Programa_XXIII_Jornadas_Por_el_Dialogo.pdf', 'Programa_Taller_IA_Valencia.pdf'];
 self.addEventListener('install', e => {
   e.waitUntil(caches.open(CACHE).then(c => c.addAll(CORE)).then(() => self.skipWaiting()));
 });

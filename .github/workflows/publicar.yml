@@ -1,0 +1,32 @@
+name: Publicar app
+on:
+  push:
+    branches: [main]
+    paths: ['fuente/**']
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  construir:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.12' }
+      - uses: actions/setup-node@v4
+        with: { node-version: '20' }
+      - name: Instalar Playwright
+        run: |
+          npm install --prefix fuente playwright@1.47.2
+          npx --prefix fuente playwright install --with-deps chromium
+      - name: Generar index.html
+        run: |
+          python3 fuente/build_apm.py
+          NODE_PATH=$PWD/fuente/node_modules node fuente/prea.js
+      - name: Guardar cambios
+        run: |
+          git config user.name "app-apm-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add index.html
+          git diff --cached --quiet || git commit -m "Reconstruye index.html desde fuente/"
+          git push
