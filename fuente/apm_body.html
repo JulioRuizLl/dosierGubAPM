@@ -1237,6 +1237,7 @@ document.documentElement.classList.add('intro');
   order.forEach(function(el){ if(el) v.appendChild(el); });
   document.documentElement.setAttribute('data-variant',VARIANT);
   if(VARIANT==='dosier'){
+    APM_EVENTS.length=0; APM_NEWS.length=0; var agEl=pick('#homeAgenda'); if(agEl) agEl.remove();
     var h1=pick('.home-wel h1'), lede=pick('.home-wel .lede');
     if(h1) h1.textContent='Guía del primer destino';
     if(lede) lede.textContent='Para jueces y magistrados que llegan a la carrera: posesión, plazos, cese, contactos de tu territorio y tu asociación, en un solo sitio. Elaborada por la APM.';
