@@ -680,7 +680,15 @@ section[hidden]{display:none!important}
 </header>
 
 <style>
-.home-agenda{margin:22px 0 10px;background:var(--surface);border:1px solid var(--line);border-top:4px solid var(--sky);border-radius:12px;padding:20px 22px}
+.home-agenda{margin:16px 0 4px;background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--sky);border-radius:10px;padding:12px 16px}
+.ag-k{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:700;margin-bottom:6px}
+.ag-strip{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 22px}
+.ag-strip li{display:flex;flex-wrap:wrap;gap:0 8px;align-items:baseline;font-size:14.5px;line-height:1.35;padding:4px 0}
+.ag-strip b{font-size:12.5px;color:var(--muted)}
+.ag-strip a,.ag-strip li>span:last-child{color:var(--ink);flex-basis:100%}
+.ag-tag{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--sky)}
+.home-agenda .ag-more{margin-top:6px;font-size:14px}
+@media (max-width:760px){.ag-strip{grid-template-columns:1fr}}
 .ag-head span{display:block;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:700}
 .ag-head b{display:block;font-family:var(--serif);font-size:26px;line-height:1.2;color:var(--h-ink);margin-top:4px}
 .ag-cols{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:22px;margin-top:14px}
@@ -715,12 +723,13 @@ section[hidden]{display:none!important}
 @media (max-width:760px){.entry-g{grid-template-columns:1fr}.entry{min-height:0}}
 @media (max-width:760px){
  html.js #v-inicio.on .home-hero{display:contents}
- html.js #v-inicio.on > *, html.js #v-inicio.on .home-hero > *{order:4}
+ html.js #v-inicio.on > *, html.js #v-inicio.on .home-hero > *{order:6}
  html.js #v-inicio.on .home-wel{order:1}
- html.js #v-inicio.on .entry-wrap{order:2}
- html.js #v-inicio.on .home-side{order:3}
- html[data-variant="dosier"].js #v-inicio.on #faq{order:3}
- html[data-variant="dosier"].js #v-inicio.on .home-side{order:4}
+ html.js #v-inicio.on #homeAgenda{order:2}
+ html.js #v-inicio.on .entry-wrap{order:3}
+ html.js #v-inicio.on .home-side{order:4}
+ html[data-variant="dosier"].js #v-inicio.on #faq{order:4}
+ html[data-variant="dosier"].js #v-inicio.on .home-side{order:5}
 }
 
 @media (max-width:760px){.ag-cols{grid-template-columns:1fr;gap:16px}.home-agenda{padding:16px}.ag-head b{font-size:22px}}
@@ -1604,15 +1613,12 @@ function renderHome(){
   if(st.favs.length){ h+='<div class="favs"><div class="favs-h"><b>'+ICON.starf+' Mis contactos</b><span>Guardados en este dispositivo</span></div><div class="favs-g">'+st.favs.slice(0,8).map(function(f){return '<div class="fav"><div class="fav-t"><b>'+esc(f.t)+'</b><button type="button" class="fav-x" data-fav="'+esc(f.k)+'" aria-label="Quitar">×</button></div><div class="lines">'+(f.h||'')+'</div></div>';}).join('')+'</div></div>'; }
   var sec=t?(APM.sec[t.id]||[]):[];
   el.innerHTML=h; h='';
-  var ag=document.getElementById('homeAgenda'); if(ag){ var evs=upcomingEvents(), nws=APM_NEWS.slice().sort(function(a,b){return a.fecha<b.fecha?1:-1;}).slice(0,4);
-    var evH=evs.length?'<ul class="ag-ul">'+evs.map(function(e){return '<li><b>'+esc(e.diasTxt||fmtDate(new Date(e.fecha+'T12:00:00')))+'</b><span>'+esc(e.titulo)+'</span></li>';}).join('')+'</ul>':'';
-    var nwH=nws.length?'<ul class="ag-ul">'+nws.map(function(n){return '<li><b>'+esc(fmtDate(new Date(n.fecha+'T12:00:00')))+'</b><a href="'+esc(n.url)+'" target="_blank" rel="noopener">'+esc(n.titulo)+'</a></li>';}).join('')+'</ul>':'';
-    var agH='';
-    if(evH||nwH){
-      agH='<div class="ag-head"><span>La APM, al día</span><b>Agenda y noticias</b></div><div class="ag-cols">'
-        +(evH?'<div><h3>Próximas actividades</h3>'+evH+'</div>':'')
-        +(nwH?'<div><h3>Últimas noticias</h3>'+nwH+'</div>':'')
-        +'</div><a class="ag-more" href="#novedades" data-jump="novedades">Ver agenda y noticias completas →</a>';
+  var ag=document.getElementById('homeAgenda'); if(ag){ var evs=upcomingEvents().slice(0,2), nws=APM_NEWS.slice().sort(function(a,b){return a.fecha<b.fecha?1:-1;}).slice(0,2), agH='';
+    if(evs.length||nws.length){
+      agH='<div class="ag-k">La APM, al día</div><ul class="ag-strip">'
+        +evs.map(function(e){return '<li><span class="ag-tag">Agenda</span><b>'+esc(e.diasTxt||fmtDate(new Date(e.fecha+'T12:00:00')))+'</b><span>'+esc(e.titulo)+'</span></li>';}).join('')
+        +nws.map(function(n){return '<li><span class="ag-tag">Noticia</span><b>'+esc(fmtDate(new Date(n.fecha+'T12:00:00')))+'</b><a href="'+esc(n.url)+'" target="_blank" rel="noopener">'+esc(n.titulo)+'</a></li>';}).join('')
+        +'</ul><a class="ag-more" href="#novedades" data-jump="novedades">Agenda y noticias completas →</a>';
     }
     ag.innerHTML=agH; ag.hidden=!agH; }
   h+='<div class="home-card apm-card"><div class="hc-k">Tu sección de la APM</div>';
@@ -1910,7 +1916,7 @@ document.documentElement.classList.add('intro');
   var v=document.getElementById('v-inicio'); if(!v) return;
   function pick(sel){return v.querySelector(sel);}
   var hero=pick('.home-hero'), entry=pick('.entry-wrap'), agenda=pick('#homeAgenda'), faq=pick('#faq'), ask=pick('.ask'), hh=pick('.home-h'), grid=pick('#homeGrid'), mi=pick('#midestino');
-  var order = VARIANT==='dosier' ? [hero,entry,faq,ask,hh,grid,mi,agenda] : [hero,entry,agenda,faq,ask,hh,grid,mi];
+  var order = VARIANT==='dosier' ? [hero,entry,faq,ask,hh,grid,mi] : [hero,agenda,entry,faq,ask,hh,grid,mi];
   order.forEach(function(el){ if(el) v.appendChild(el); });
   document.documentElement.setAttribute('data-variant',VARIANT);
   if(VARIANT==='dosier'){
