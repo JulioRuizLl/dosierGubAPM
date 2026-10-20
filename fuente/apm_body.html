@@ -47,6 +47,15 @@
 .ej{font-size:13.5px;color:var(--muted);margin-top:4px}
 .ej span{font-style:italic}
 @media (max-width:760px){.entry-g{grid-template-columns:1fr}.entry{min-height:0}}
+@media (max-width:760px){
+ html.js #v-inicio.on .home-hero{display:contents}
+ html.js #v-inicio.on > *, html.js #v-inicio.on .home-hero > *{order:4}
+ html.js #v-inicio.on .home-wel{order:1}
+ html.js #v-inicio.on .entry-wrap{order:2}
+ html.js #v-inicio.on .home-side{order:3}
+ html[data-variant="dosier"].js #v-inicio.on #faq{order:3}
+ html[data-variant="dosier"].js #v-inicio.on .home-side{order:4}
+}
 
 @media (max-width:760px){.ag-cols{grid-template-columns:1fr;gap:16px}.home-agenda{padding:16px}.ag-head b{font-size:22px}}
 </style>
@@ -1226,6 +1235,7 @@ document.documentElement.classList.add('intro');
   var hero=pick('.home-hero'), entry=pick('.entry-wrap'), agenda=pick('#homeAgenda'), faq=pick('#faq'), ask=pick('.ask'), hh=pick('.home-h'), grid=pick('#homeGrid'), mi=pick('#midestino');
   var order = VARIANT==='dosier' ? [hero,entry,faq,ask,hh,grid,mi,agenda] : [hero,entry,agenda,faq,ask,hh,grid,mi];
   order.forEach(function(el){ if(el) v.appendChild(el); });
+  document.documentElement.setAttribute('data-variant',VARIANT);
   if(VARIANT==='dosier'){
     var h1=pick('.home-wel h1'), lede=pick('.home-wel .lede');
     if(h1) h1.textContent='Guía del primer destino';
