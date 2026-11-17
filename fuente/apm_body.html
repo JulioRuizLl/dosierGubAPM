@@ -67,6 +67,60 @@
 }
 
 @media (max-width:760px){.ag-cols{grid-template-columns:1fr;gap:16px}.home-agenda{padding:16px}.ag-head b{font-size:22px}}
+
+/* ===== Mi camino (Manual de entrada APM) ===== */
+.fase-pick{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:6px 0 18px}
+.fase-pick .mi-lt{width:100%;font-weight:700;font-size:15px}
+.fase-pick button{font:inherit;font-size:14px;padding:6px 12px;border:1px solid var(--line);border-radius:999px;background:var(--card);color:var(--ink);cursor:pointer}
+.fase-pick button[aria-pressed="true"]{background:var(--band);color:var(--band-ink);border-color:transparent;font-weight:700}
+.ruta{list-style:none;margin:0;padding:0;position:relative}
+.ruta::before{content:"";position:absolute;left:15px;top:8px;bottom:8px;width:2px;background:var(--line)}
+.fase{position:relative;display:grid;grid-template-columns:32px 1fr;gap:14px;padding:0 0 18px}
+.fase-n{position:relative;z-index:1;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:15px;background:var(--card);border:2px solid var(--sky);color:var(--blue-deep)}
+.fase.past .fase-n{background:var(--ok);border-color:var(--ok);color:#fff}
+.fase.now .fase-n{background:var(--blue-deep);border-color:var(--blue-deep);color:#fff}
+.fase-b{background:var(--surface);border-radius:2px;padding:12px 16px;border-left:4px solid transparent}
+.fase.now .fase-b{border-left-color:var(--blue-deep);box-shadow:var(--shadow)}
+.fase.past .fase-b{opacity:.78}
+.fase-h{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.fase-h b{font-family:var(--serif);font-size:18px;color:var(--ink)}
+.tag-now{font-size:12px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;background:var(--band);color:var(--band-ink);padding:2px 8px;border-radius:3px}
+.fase-w{display:block;font-size:13.5px;color:var(--muted);margin:2px 0 6px}
+.fase-b p{margin:0 0 8px;font-size:15.5px}
+.fase-p{display:flex;align-items:center;gap:10px;margin:0 0 8px;max-width:320px}
+.fase-p .bar-p{flex:1;min-width:120px}
+.fase-go,.faq-f{display:flex;flex-wrap:wrap;gap:6px 16px;align-items:center;font-size:14.5px}
+.faq-f{margin-top:8px}
+.faq-g{margin-top:26px}
+.faq-a{margin:0 0 6px;padding-left:20px}
+.faq-a li{margin:0 0 6px}
+.apm-pos{margin:8px 0 4px;padding:8px 12px;border-left:3px solid var(--accent);background:var(--accent-soft);font-size:15px}
+.mref{font-size:13px;font-weight:600;white-space:nowrap}
+.verif{display:inline-block;font-size:11.5px;font-weight:700;letter-spacing:.02em;color:#6b5200;background:#FFF4D6;border:1px solid #E6CF85;border-radius:3px;padding:0 5px;vertical-align:1px;white-space:nowrap}
+.notice{background:var(--surface);border-left:4px solid var(--blue-deep);padding:12px 16px;margin:0 0 16px;font-size:15px;border-radius:2px}
+.notice .src{margin-top:8px}
+.listas{display:grid;gap:22px}
+.lista h4{margin:0;font-size:18px;flex:none}
+.lista .cese-top{gap:12px}
+.lista>.d{margin:4px 0 10px;color:var(--muted);font-size:15px}
+.guias{grid-template-columns:repeat(2,minmax(0,1fr))}
+.ph-steps{margin:0;padding-left:20px}
+.ph-steps li{margin:0 0 6px;font-size:15.5px}
+.carta{background:var(--surface);padding:20px 22px;border-radius:2px;max-width:78ch}
+.carta p{margin:0 0 10px}
+.carta-k{font-family:var(--serif);font-size:20px;font-weight:700;color:var(--ink)}
+.carta-f{font-weight:700;font-size:15px;color:var(--muted)}
+.cam-strip{display:flex;align-items:center;gap:14px;background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--blue-deep);border-radius:4px;padding:12px 16px;margin:0 0 12px;color:var(--ink);text-decoration:none}
+.cam-strip .ti{flex:none;color:var(--blue-deep)}
+.cs-t{flex:1;display:flex;flex-direction:column;gap:2px;min-width:0}
+.cs-t b{font-size:16px}
+.cs-t span{font-size:14px;color:var(--muted)}
+.cs-dots{display:flex;gap:6px;list-style:none;margin:0;padding:0;flex:none}
+.cs-dots li{width:10px;height:10px;border-radius:50%;background:var(--line)}
+.cs-dots li.past{background:var(--ok)}
+.cs-dots li.now{background:var(--blue-deep);transform:scale(1.25)}
+@media (max-width:760px){.guias{grid-template-columns:1fr}.cs-dots{display:none}.fase-b{padding:10px 12px}.lista .cese-top{flex-wrap:wrap}.lista h4{width:100%}}
+@media print{.fase-pick,.cam-strip{display:none}}
 </style>
 <div class="appshell" id="top">
   <nav class="side" id="side" aria-label="Secciones de la app"></nav>
@@ -95,9 +149,9 @@
       <section id="faq"></section>
       <section id="midestino"></section>
     </div>
-    <div class="view" data-view="tramites" id="v-tramites"><div class="subnav" data-subnav="tramites"></div><section id="posesion"></section><section id="cese"></section><section id="pendientes"></section></div>
+    <div class="view" data-view="camino" id="v-camino"><div class="subnav" data-subnav="camino"></div><section id="ruta"></section><section id="sustitucion"></section><section id="primerdestino"></section><section id="listas"></section><section id="guias"></section></div><div class="view" data-view="tramites" id="v-tramites"><div class="subnav" data-subnav="tramites"></div><section id="posesion"></section><section id="cese"></section><section id="pendientes"></section></div>
     <div class="view" data-view="directorio" id="v-directorio"><div class="subnav" data-subnav="directorio"></div><section id="territorio"></section><section id="informatica"></section><section id="estatal"></section></div>
-    <div class="view" data-view="apm" id="v-apm"><div class="subnav" data-subnav="apm"></div><section id="novedades"></section><section id="apm"></section><section id="asociarse"></section></div>
+    <div class="view" data-view="apm" id="v-apm"><div class="subnav" data-subnav="apm"></div><section id="novedades"></section><section id="carta"></section><section id="apm"></section><section id="asociarse"></section></div>
     <div class="view" data-view="mas" id="v-mas"><div class="subnav" data-subnav="mas"></div><section id="acerca"></section><section id="glosario"></section><section id="normativa"></section><section id="fuentes"></section></div>
   </main>
 </div>
@@ -216,6 +270,7 @@ var TSJ=[
 var VARIANT='__VARIANT__';
 var VIEWS=[
  {id:'inicio',n:'Inicio',ic:'home'},
+ {id:'camino',n:'Mi camino',ic:'route'},
  {id:'apm',n:'APM',ic:'apm'},
  {id:'tramites',n:'Trámites',ic:'doc'},
  {id:'directorio',n:'Directorio',ic:'dir'},
@@ -224,6 +279,11 @@ var VIEWS=[
 var SECTIONS=[
  {id:'faq',n:'Preguntas frecuentes del primer destino',v:'inicio'},
  {id:'midestino',n:'Mi destino',v:'inicio'},
+ {id:'ruta',n:'Mi camino, fase a fase',v:'camino'},
+ {id:'sustitucion',n:'Fase de sustitución y refuerzo',v:'camino'},
+ {id:'primerdestino',n:'Del escalafón a la toma de posesión',v:'camino'},
+ {id:'listas',n:'Mis listas de comprobación',v:'camino'},
+ {id:'guias',n:'Guías paso a paso',v:'camino'},
  {id:'posesion',n:'Posesión y cese',v:'tramites'},
  {id:'cese',n:'Lista para el cese',v:'tramites'},
  {id:'pendientes',n:'Prórroga de jurisdicción',v:'tramites'},
@@ -231,6 +291,7 @@ var SECTIONS=[
  {id:'informatica',n:'Informática de tu territorio',v:'directorio'},
  {id:'estatal',n:'Contactos nacionales',v:'directorio'},
  {id:'novedades',n:'Agenda y noticias',v:'apm',opt:1},
+ {id:'carta',n:'Bienvenida de la Presidencia',v:'apm'},
  {id:'apm',n:'La APM: estructura y secciones',v:'apm'},
  {id:'asociarse',n:'Asóciate a la APM',v:'apm'},
  {id:'acerca',n:'Sobre la app',v:'mas'},
@@ -454,7 +515,7 @@ function rInfo(s){
 /* ---------- Parámetros de enlace (?t=territorio, ?bienvenida) ---------- */
 function showWelcome(){
   var el=document.getElementById('welcSheet'); if(!el){el=document.createElement('div'); el.id='welcSheet'; el.className='inst-sheet'; el.setAttribute('role','dialog'); el.setAttribute('aria-label','Bienvenida'); document.body.appendChild(el);}
-  el.innerHTML='<div class="inst-card welc"><button type="button" class="inst-x" data-welc="x" aria-label="Cerrar">×</button><div class="inst-h"><img src="apple-touch-icon.png" alt="" width="52" height="52" onerror="this.style.display=\'none\'"><div><b>¡Enhorabuena y bienvenido/a!</b><span>La app de la APM para tu llegada a la carrera</span></div></div><ol class="inst-steps welc-steps"><li><span class="ic">1</span><button type="button" data-welc="terr">Elige tu territorio en el mapa</button></li><li><span class="ic">2</span><button type="button" data-welc="mi">Configura «Mi destino» y sigue tus plazos</button></li><li><span class="ic">3</span><button type="button" data-welc="inst">Instala la app en tu móvil</button></li><li><span class="ic">4</span><button type="button" data-welc="apm">Conoce la APM y tu sección</button></li></ol><button type="button" class="inst-later" data-welc="x">Empezar a explorar</button></div>';
+  el.innerHTML='<div class="inst-card welc"><button type="button" class="inst-x" data-welc="x" aria-label="Cerrar">×</button><div class="inst-h"><img src="apple-touch-icon.png" alt="" width="52" height="52" onerror="this.style.display=\'none\'"><div><b>¡Enhorabuena y bienvenido/a!</b><span>La app de la APM para tu llegada a la carrera</span></div></div><ol class="inst-steps welc-steps"><li><span class="ic">1</span><button type="button" data-welc="terr">Elige tu territorio en el mapa</button></li><li><span class="ic">2</span><button type="button" data-welc="mi">Configura «Mi destino» y sigue tus plazos</button></li><li><span class="ic">3</span><button type="button" data-welc="inst">Instala la app en tu móvil</button></li><li><span class="ic">4</span><button type="button" data-welc="apm">Conoce la APM y tu sección</button></li><li><span class="ic">5</span><button type="button" data-welc="camino">Sigue tu camino: de la fase de refuerzo a tu carrera</button></li></ol><button type="button" class="inst-later" data-welc="x">Empezar a explorar</button></div>';
   el.hidden=false; requestAnimationFrame(function(){el.classList.add('on');}); track('evento/bienvenida','Bienvenida mostrada');
 }
 function hideWelcome(){var el=document.getElementById('welcSheet'); if(el){el.classList.remove('on'); setTimeout(function(){el.hidden=true;},250);} try{localStorage.setItem('apm-welc','1');}catch(e){}}
@@ -590,6 +651,7 @@ function miPrint(){
 
 /* ================= helpers ================= */
 var ICON={
+route:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><circle cx="6" cy="19" r="2.5"/><circle cx="18" cy="5" r="2.5"/><path d="M8.5 19H17a3.5 3.5 0 0 0 0-7H7a3.5 3.5 0 0 1 0-7h8.5"/></svg>',
  link:'<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1"/><path d="M14 11a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1"/></svg>',
  share:'<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.6 13.5 6.8 4M15.4 6.5l-6.8 4"/></svg>',
  staro:'<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z"/></svg>',
@@ -766,7 +828,7 @@ function rFuentes(s){
    '<li>TSJ de Madrid: la promoción de Celso Rodríguez Padrón al Tribunal Supremo consta en el Real Decreto 532/2026, de 24 de junio (BOE 16-7-2026). La Presidencia en funciones de María Aurora de la Cueva procede de Confilegal (29-9-2026).</li>'+
    '<li>Audiencia Provincial de Castellón: Sofía Díaz García, nombrada presidenta por el Real Decreto 757/2025, de 1 de septiembre.</li>'+
    '<li>Audiencias de Cataluña: teléfonos, correos y presidentes tomados del Dosier gubernativo del TSJ de Cataluña (septiembre 2026).</li>'+
-   '<li>APM: estructura, Comité Ejecutivo y secciones territoriales según magistratura.es.</li>'+
+   '<li>APM: estructura, Comité Ejecutivo y secciones territoriales según magistratura.es.</li>'+'<li>«Mi camino» (fase de sustitución y refuerzo, primer destino, listas y guías): Manual de entrada «Tu primer destino» de la APM, adaptado y contrastado con la normativa vigente. Cada respuesta indica la página del Manual. Los teléfonos, correos y formularios tomados del Manual llevan la marca «pendiente de verificar». No se usa la relación del Comité Ejecutivo y de las secciones territoriales que figura en el Manual, porque no coincide con la actual de magistratura.es. <a href="'+MAN+'" target="_blank" rel="noopener">Descargar el Manual (PDF)</a>.</li>'+
    '<li>Sala o Secretaría de Gobierno, Oficina de Comunicación, acuerdos y normas de reparto de cada TSJ: páginas de cada TSJ en poderjudicial.es, enlazadas en cada ficha.</li></ul></div>';
   var seen={},list=[]; Object.keys(S).forEach(function(k){if(S[k].u&&!seen[S[k].u]){seen[S[k].u]=1;list.push(S[k]);}});
   h+='<h3 class="k">Fuentes consultadas</h3><ol class="srcs">'+list.map(function(x){return '<li>'+ext(x.u,esc(x.t))+'</li>';}).join('')+'<li>Fichas individuales del directorio del CGPJ para cada Presidencia (enlazadas en cada ficha).</li><li>Solo para Cataluña: '+esc(S.tsjc.t)+'.</li></ol>';
@@ -781,7 +843,233 @@ function rFaq(s){
   h+='</div>';
   return h;
 }
-var R={faq:rFaq,glosario:rGlos,novedades:rNov,acerca:rAbout,midestino:rMi,informatica:rInfo,apm:rApm,asociarse:rJoin,territorio:rTerr,posesion:rPosesion,cese:rCese,pendientes:rPend,estatal:rEstatal,normativa:rNorm,fuentes:rFuentes};
+
+/* ================= MI CAMINO · integración del Manual de entrada APM «Tu primer destino» ================= */
+var MAN='Manual-de-entrada-APM.pdf';
+S.manual={t:'APM · Manual de entrada «Tu primer destino» (PDF)',u:MAN};
+S.boe75={t:'BOE 25-6-2026 · Fase de sustitución y refuerzo de la Promoción 75.ª',u:'https://www.boe.es/boe/dias/2026/06/25/pdfs/BOE-A-2026-13763.pdf'};
+S.cgpj307={t:'CGPJ · Propuesta de reforma de la formación inicial (marzo de 2026)',u:'https://www.poderjudicial.es/cgpj/es/Poder-Judicial/En-Portada/El-CGPJ-propone-una-reforma-del-sistema-de-formacion-inicial-de-la-Carrera-Judicial-para-atender-las-necesidades-derivadas-de-la-implantacion-de-los-Tribunales-de-Instancia'};
+S.bocg307={t:'BOCG 12-6-2026 · Proposición de ley de modificación del art. 307 LOPJ',u:'https://www.congreso.es/public_oficiales/L15/CONG/BOCG/B/BOCG-15-B-340-1.PDF'};
+S.lt307={t:'Legal Today (30-9-2026) · El Congreso admite la proposición para suprimir las sustituciones obligatorias',u:'https://www.legaltoday.com/actualidad-juridica/noticias-de-derecho/el-congreso-admite-la-ley-del-pp-para-acortar-la-formacion-de-los-futuros-jueces-y-quitar-las-sustituciones-obligatorias-2026-09-30/'};
+NORMS.push({n:'Ley 53/1984, de Incompatibilidades del Personal al Servicio de las Administraciones Públicas (art. 19: docencia y conferencias)',u:'https://www.boe.es/eli/es/l/1984/12/26/53/con'});
+
+function mref(p){return '<a class="mref" href="'+MAN+'#page='+p+'" target="_blank" rel="noopener" aria-label="Manual APM, página '+p+' (abre el PDF)">Manual APM, p. '+p+'</a>';}
+var VER=' <span class="verif" title="Dato tomado del Manual de entrada; confírmalo antes de usarlo">pendiente de verificar</span>';
+function jl(id,txt){return '<a href="#'+id+'" data-jump="'+id+'">'+txt+' →</a>';}
+
+/* ---------- Preguntas: fase de sustitución y refuerzo ---------- */
+var SUST=[
+ {g:'Qué es y cómo se evalúa',qs:[
+  {id:'s1',q:'¿Dónde se regula esta fase?',p:12,c:'art. 307.4 LOPJ',a:['Solo en el art. 307.4 LOPJ, en la redacción de la LO 8/2012. Tras las prácticas tuteladas, haces sustituciones y refuerzos, con preferencia sobre los jueces sustitutos.','Ningún reglamento la desarrolla. Por eso el Manual aplica, por analogía, el Reglamento 1/2016 de Jueces de Adscripción Territorial (JAT) y en Expectativa de Destino (JED).']},
+  {id:'s2',q:'¿En qué consiste?',p:13,c:'arts. 214 y 307.4 LOPJ',a:['Ejerces la jurisdicción con la misma amplitud que el titular: dictas resoluciones, celebras juicios y vistas, diriges los procedimientos.','<b>En sustitución</b> actúas con plenitud de jurisdicción y puedes asistir a las Juntas de Jueces.','<b>En refuerzo</b>, la Sala de Gobierno te atribuye asuntos por reparto. Votas en las Juntas, salvo en las de Decano y en las de normas de reparto.']},
+  {id:'s3',q:'¿Cuánto dura? ¿Puede prorrogarse?',p:14,c:'arts. 307.5 y 308 LOPJ',a:['Dura un mínimo de cuatro meses. El CGPJ fija la duración de cada promoción.','Si al terminar aún no tienes destino, ya no es una prórroga: pasas a ser juez en expectativa de destino (JED).'],apm:'La APM rechaza esta fase y cualquier prórroga, como la que sufrió la Promoción 67 en 2017, y ofrece sus servicios jurídicos.'},
+  {id:'s4',q:'¿Tengo tutor? ¿Alguien revisa mis resoluciones?',p:15,a:['No. Tus providencias, autos y sentencias ya no son borradores: tienen plenos efectos y se pueden ejecutar.']},
+  {id:'s16',q:'¿Cómo se me evalúa?',p:24,c:'art. 307.4 LOPJ',a:['Apto o no apto. No hay nota numérica.','El Presidente del TSJ informa sobre tu dedicación y rendimiento, y la Escuela Judicial lo valora.']},
+  {id:'s17',q:'¿Tengo que hacer informe o alarde al terminar?',p:24,c:'art. 317.3 LOPJ; arts. 124-132 RCJ',go:['alarde','Ver alarde'],a:['No hay CAES ni memoria, salvo que el Presidente del TSJ te pida alguna.','Alarde: solo si has servido el cargo sin interrupción más de seis meses (art. 129 RCJ).']},
+  {id:'s31',q:'¿Cuándo es la visita obligatoria al TSJ?',p:32,a:['Es obligatoria. Según el TSJ, se hace al empezar o al terminar las prácticas tuteladas. Allí te explican qué plazas saldrán.','Consejo para cualquier destino: visita al Presidente del TSJ, al de la Audiencia (o de tu Sala), al Decano y a tus compañeros.']}
+ ]},
+ {g:'Destinos y cambios',qs:[
+  {id:'s5',q:'¿Qué significa estar «a disposición» del Presidente del TSJ?',p:15,a:['Estás adscrito a una provincia y puedes cambiar de plaza por una nueva designación.','Cubres vacantes, ausencias del titular o refuerzos. El Presidente del TSJ te designa y da cuenta a la Sala de Gobierno.']},
+  {id:'s6',q:'¿A qué destinos pueden enviarme?',p:16,c:'art. 307.4 LOPJ',a:['A cualquier órgano: mixtos, primera instancia, instrucción, social, contencioso, mercantil, familia, menores…','La ley pide que sean, si es posible, órganos parecidos a los que luego te pueden tocar.','Cada TSJ publica en su web la lista de vacantes, ausencias y refuerzos.']},
+  {id:'s7',q:'¿Cómo se eligen los destinos?',p:17,c:'art. 329.1 LOPJ; art. 59 Reglamento 1/2000',a:['Primero, la Escuela Judicial te pide que elijas provincia.','Después, el TSJ oferta las plazas y eliges por orden de escalafón.','Por analogía con los JAT: te avisan por correo electrónico y tienes <b>dos días hábiles</b> para indicar preferencias y méritos, incluidas tus necesidades de conciliación.','La designación se publica en el portal de transparencia del TSJ y se puede recurrir.']},
+  {id:'s8',q:'¿Pueden cambiarme de destino o de provincia?',p:18,a:['De plaza, sí, dentro de la provincia.','De provincia, solo de forma excepcional y motivada, dentro del territorio del TSJ. En las islas se tiene en cuenta la movilidad entre islas.','En la práctica, los TSJ intentan que no cambies durante toda la fase.']},
+  {id:'s9',q:'¿Hay compensación si me cambian?',p:19,a:['Si cambias de provincia, cobras la indemnización por razón del servicio.','Si el cambio es dentro de la misma provincia, no.']}
+ ]},
+ {g:'Nómina y retribuciones',qs:[
+  {id:'s10',q:'¿Cuánto se cobra?',p:19,c:'Ley 15/2003',a:['Lo mismo que el titular de la plaza que sustituyes o refuerzas: sueldo, complementos de destino y de representación, retribución variable y guardias.','A diferencia de los JAT, no cobras complemento por desplazamiento.'],apm:'La APM sostiene que debéis cobrar como un JAT: a iguales funciones, iguales retribuciones, como ha dicho la Sala Tercera del Tribunal Supremo.'},
+  {id:'s11',q:'¿Cobro la retribución variable por objetivos?',p:20,a:['Sí. Cuentan las sentencias y autos finales que dictes en esta fase. Suele liquidarse hacia julio.','No podrás ver tus datos hasta tener el correo @poderjudicial.es. Pide al LAJ de cada órgano un certificado de tus resoluciones.','Si ves un error, escribe a la Sección de Estadística Judicial del CGPJ: <b>estadistica.judicial@cgpj.es</b>'+VER+'. Revísalo bien si has reforzado varios juzgados.']},
+  {id:'s12',q:'¿Qué trámites hago para cobrar?',p:21,go:['chk-sust','Ir a la lista de inicio'],a:['Cambias de pagador: de la Escuela Judicial (CGPJ) al Ministerio de Justicia.','Lleva a la Habilitación de la Gerencia Territorial del Ministerio: acuerdo de nombramiento, acta de juramento y toma de posesión, ficha de datos personales y bancarios, DNI, tarjeta MUGEJU y modelo 145.','Hazlo cuanto antes. Si cierran la nómina sin ti, estarás un mes sin cobrar. En verano los cierres se adelantan.','Los trámites cambian según el territorio. Si sois varios, nombrad un delegado.'],apm:'La APM considera inadmisible cualquier retraso en el cobro y se ofrece a ayudarte.'},
+  {id:'s13',q:'¿Dónde consulto la nómina?',p:22,go:['g-ainoa','Guía de Ainoa'],a:['Dejará de llegarte por correo. Se consulta en <b>Ainoa</b>, el portal del empleado del Ministerio de Justicia.','Allí verás el recibo de nómina, tus datos y el certificado de IRPF.']},
+  {id:'s14',q:'¿Cómo cambio la retención del IRPF?',p:22,a:['El Ministerio no conoce lo que cobraste antes y suele aplicar una retención baja. La declaración puede salirte a pagar (el Manual habla de 1.000 a 4.000 euros).','Pide en la Gerencia Territorial un tipo más alto. Lleva una nómina de la Escuela para que te orienten.','Orientación del Manual: entre el 24 % y el 30 % en esta fase; entre el 21 % y el 25 % después, en un juzgado ordinario. Depende de tu caso.','<i>Es una orientación, no asesoramiento fiscal.</i>']},
+  {id:'s15',q:'¿Cómo obtengo el certificado de haberes para la renta?',p:23,a:['Ese año necesitarás dos: el de la Escuela Judicial (te lo envía su gerencia) y el del Ministerio (lo descargas en Ainoa).','Al año siguiente puede haber otro tramo pagado por la Escuela: el tiempo entre el cese y la toma de posesión.']}
+ ]},
+ {g:'Firma, correo e informática',qs:[
+  {id:'s20',q:'¿Puedo pedir el carné de juez?',p:26,a:['No. Solo cuando seas nombrado juez y tomes posesión de tu primer destino.']},
+  {id:'s21',q:'¿Cómo firmo las resoluciones?',p:26,a:['Pide al CAU de tu comunidad una tarjeta de firma o un certificado digital, instalado en el ordenador o en un pendrive.','Cambia según el territorio: en la Comunidad Valenciana se ha firmado con el DNI; en Madrid, con un certificado de Camerfirma; en Andalucía, con una tarjeta.']},
+  {id:'s22',q:'¿De qué servicios tengo que darme de alta?',p:27,go:['chk-sust','Ir a la lista de inicio'],a:['Firma electrónica y certificado digital.','Usuario y claves de Ainoa.','Visor de vídeos, a través del CAU.','Programa de gestión procesal del órgano. Si haces guardias de otro órgano, pide también el alta en él.']},
+  {id:'s23',q:'¿Tendré correo @poderjudicial.es?',p:27,a:['No hasta tomar posesión como juez. Mantienes el correo @escuela.poderjudicial.es.','Algunas comunidades te dan un correo propio.'],apm:'La APM reclama para esta fase los mismos medios que el resto de la carrera: correo corporativo, CENDOJ completo y portátil o tableta.'},
+  {id:'s24',q:'¿Me dan portátil o tableta?',p:28,a:['Depende de la comunidad autónoma o del Ministerio. Lo normal es que te den un portátil.']},
+  {id:'s25',q:'¿Puedo darme de alta en una base de datos jurídica?',p:28,go:['g-bd','Cómo pedirla'],a:['Sí. El CENDOJ ofrece una base comercial, solo una a elegir: La Ley Digital, Tirant Online o Westlaw (Aranzadi).']},
+  {id:'s26',q:'¿Tengo acceso completo al CENDOJ?',p:29,a:['No. Tienes la versión limitada de la Escuela: sin búsquedas guardadas, alertas, nube ni datos personalizados.']}
+ ]},
+ {g:'Permisos, formación y otras dudas',qs:[
+  {id:'s28',q:'¿Cuántos días de permiso tengo?',p:29,c:'art. 373.4 LOPJ',a:['Seis permisos de tres días al año, si no los gastaste en las prácticas tuteladas.','Cada permiso: tres días seguidos o alternos, dentro del mismo mes.','Lo que no disfrutes se pierde al acabar el año, salvo que el CGPJ o el TSJ lo prorroguen (a menudo hasta el 31 de enero o el 31 de marzo).']},
+  {id:'s29',q:'¿Cómo pido las vacaciones?',p:30,a:['A través del Decano y de la Extranet (vacaciones, licencias y permisos). Las aprueba el Presidente del TSJ.','Si agosto cae en la fase, se prioriza el mes completo. Si tienes guardias, las haces y disfrutas esos días después.','En sustitución, puede que ya esté aprobado el plan de tu predecesor. Habla antes con el Decano.']},
+  {id:'s27',q:'¿Puedo hacer cursos de formación continua?',p:29,a:['Por regla general, no puedes pedir actividades del Plan Estatal. La Comisión Permanente puede autorizar alguna.','Puedes ir como simpatizante a actividades de la APM, como el Encuentro de Jueces Jóvenes.']},
+  {id:'s30',q:'¿Puedo dar clases o conferencias?',p:31,c:'art. 389.5.º LOPJ; art. 343.1 RCJ; art. 19 b) y h) Ley 53/1984',a:['Sí, y sin autorización, si se cumplen tres condiciones:','No es asesoramiento jurídico.','Lo haces a partir de las 15:00 o en días de asuntos propios.','Los cursos en centros oficiales no pasan de 75 horas al año ni son habituales.']},
+  {id:'s18',q:'¿Puedo asociarme a la APM? ¿Cuánto cuesta?',p:25,c:'art. 127 CE; art. 401 LOPJ',go:['asociarse','Asóciate a la APM'],a:['Aún no como socio de pleno derecho: hay que estar en servicio activo.','Pero puedes rellenar el alta desde la Escuela. Queda en espera y ya cuentas con el apoyo, los servicios jurídicos y las actividades de la APM.','Según el Manual, la cuota es de 15 € al mes, se descuenta de la nómina y desgrava en la renta. No se paga durante la Escuela, las prácticas ni la sustitución'+VER+'.']},
+  {id:'s19',q:'¿Necesito un seguro de responsabilidad civil?',p:25,c:'art. 296 LOPJ',a:['Tu responsabilidad es indirecta: el perjudicado reclama al Estado. El Estado puede repetir contra ti solo si hubo dolo o culpa grave.','El seguro cubre esa repetición. En esta fase respondes igual que un titular.','El Manual menciona Mapfre y Allianz como aseguradoras que lo ofrecen.']}
+ ]}
+];
+
+/* ---------- Preguntas: el juez en su primer destino ---------- */
+var PDQ=[
+ {g:'Escalafón y elección de destino',qs:[
+  {id:'p1',q:'¿Cómo se hace el escalafón?',p:33,a:['Se suman tres notas: oposición (50 %), fase presencial de la Escuela (40 %) y prácticas tuteladas (10 %).','La fase de sustitución y refuerzo solo es apto o no apto.','La Escuela Judicial ordena la lista y el CGPJ os nombra por Orden.']},
+  {id:'p2',q:'¿Puedo recurrir las notas o el escalafón?',p:33,c:'art. 638.2 LOPJ',a:['Las notas no se recurren una a una (sí puedes pedir revisión de examen).','Se recurre el Acuerdo de la Comisión Permanente que aprueba nombramientos, notas y escalafón: reposición potestativa en un mes, o recurso contencioso ante la Sala Tercera del Tribunal Supremo en dos meses.']},
+  {id:'p3',q:'¿Cómo se elige el primer destino?',p:34,a:['Por videollamada, por orden de escalafón y méritos.','Antes rellenas un formulario en la Extranet del CGPJ. Sirve de respaldo si falla la videollamada; prevalece lo que digas en ella.','Vas eligiendo plazas de una lista por orden de preferencia. Al acabar, lo confirmas y recibes un justificante por correo.','Consejo: pide al LAJ las estadísticas de los juzgados que te interesan y habla con quien está allí. La APM puede darte contactos.']},
+  {id:'p4',q:'¿Cómo sé qué plazas van a ofertar?',p:35,a:['Las aprueba la Comisión Permanente. Suelen ser vacantes que quedaron desiertas en concursos anteriores.','No hay una lista oficial actualizada. Puedes comparar las plazas ofertadas y las adjudicadas en los últimos concursos.','La APM te ayuda a consultarlo.']},
+  {id:'p5',q:'¿Cómo cuentan la lengua propia o el derecho foral?',p:35,c:'Acuerdo del Pleno del CGPJ de 2-6-1999',a:['Dan una puntuación extra solo para elegir destino en esa comunidad. No cambian el escalafón general.','Un mérito suma un tercio de la diferencia entre la nota más alta y la más baja de la promoción.','Dos méritos en la misma comunidad suman la mitad de esa diferencia.']}
+ ]},
+ {g:'Cese, despachos y jura',qs:[
+  {id:'p6',q:'¿Cómo ceso en la fase de sustitución y refuerzo?',p:36,c:'art. 353 RCJ',a:['El día hábil siguiente a la publicación en el BOE, salvo que la resolución diga otra cosa.','Ante el LAJ del juzgado o del decanato, con el Decano.','Guarda una copia: la enviarás a la Gerencia de la Escuela Judicial junto con la toma de posesión.']},
+  {id:'p7',q:'¿Cómo es la entrega de despachos?',p:37,c:'art. 18 Reglamento 2/2005',a:['Es el acto solemne en el que recibes tu despacho de juez. Suele presidirlo el Rey y celebrarse en Barcelona.','Puedes ir acompañado. La Escuela Judicial te informará del protocolo.']},
+  {id:'p8',q:'¿Cómo es la jura en el TSJ?',p:37,c:'arts. 316-318 LOPJ',a:['Juras o prometes ante la Sala de Gobierno, en audiencia pública y con toga. Puedes llevar uno o dos padrinos.','Lo harás dos veces: al empezar la sustitución y antes de tu primer destino.','La Secretaría de Gobierno levanta acta. Guárdala.']},
+  {id:'p9',q:'¿Cuánto tiempo tengo entre el cese y la toma de posesión?',p:38,c:'art. 319 LOPJ',go:['plazos','Calcular mi plazo'],a:['Hasta 20 días naturales desde la publicación en el BOE (8 si es la misma población).','Pero debes tomar posesión en los <b>3 días siguientes a la jura</b>. La fecha de jura que fija el TSJ marca tu plazo real.','Ejemplo: si juras el día 10, tomas posesión, como tarde, el día 13.'],apm:'La APM defiende que se respeten los 20 días para todos.'},
+  {id:'p10',q:'¿Puedo pedir más tiempo para el traslado?',p:39,c:'art. 319 LOPJ',a:['Sí. El CGPJ puede concederte una prórroga si hay justa causa. Es habitual en Baleares, Canarias, Ceuta y Melilla.']},
+  {id:'p11',q:'¿Cuánto cobro durante el traslado?',p:39,c:'art. 306.3 LOPJ; art. 39.2 Reglamento 2/1995',a:['La Comisión Permanente te considera de nuevo funcionario en prácticas: cobras de la Escuela Judicial.','Según el Manual, ese mes cobras entre 500 y 800 euros menos, y lo recibes en la nómina del mes siguiente.'],apm:'La APM pide que se cobre el sueldo del destino anterior hasta la toma de posesión.'}
+ ]},
+ {g:'Toma de posesión',qs:[
+  {id:'p12',q:'¿Cómo tomo posesión en mi juzgado?',p:40,c:'arts. 319 y 321 LOPJ',go:['documentacion','Qué enviar y a quién'],a:['En los 3 días siguientes a la jura, en tu juzgado.','Firman el acta el LAJ del juzgado y el Decano. Si no hay Decano, el juez más antiguo del partido; si no hay titulares, un sustituto.','Pide copia del acta para la Gerencia de la Escuela Judicial, la Gerencia Territorial del Ministerio, el TSJ y la MUGEJU.']},
+  {id:'p13',q:'¿Desde cuándo cuentan los trienios?',p:43,go:['chk-carr','Ir a «Mi carrera»'],a:['Desde tu ingreso en la Escuela Judicial, pero no se reconocen solos: se activan con la toma de posesión del primer destino.','Envía la toma de posesión a la Gerencia de la Escuela. Unas semanas después te llegará el Anexo I, con todo el período, incluida la sustitución y el refuerzo.','Rellena el Anexo II y envíalo al CGPJ (Sección de Régimen Jurídico de Magistrados).']},
+  {id:'p14',q:'¿Y el servicio efectivo?',p:44,a:['El CGPJ lo cuenta solo desde el nombramiento y la toma de posesión.','Puedes ver tus datos en poderjudicial.es: Temas → Condiciones profesionales → Consulte sus datos.'],apm:'La APM considera que también debería contar el tiempo de sustitución y refuerzo, como se reconoce a jueces sustitutos y magistrados suplentes.'}
+ ]}
+];
+
+/* ---------- Listas de comprobación ---------- */
+var LISTAS=[
+ {id:'chk-sust',k:'cam-s',n:'Al empezar la sustitución y refuerzo',d:'Lo que conviene dejar hecho en las primeras semanas.',it:[
+  {t:'Entregar la documentación para la nómina',d:'En la Habilitación de la Gerencia Territorial: nombramiento, acta de juramento y posesión, datos bancarios, DNI, tarjeta MUGEJU y modelo 145.',p:21,go:'q-s12'},
+  {t:'Pedir usuario y claves de Ainoa',d:'Para ver la nómina y el certificado de IRPF.',p:22,go:'g-ainoa'},
+  {t:'Ajustar la retención del IRPF',d:'Pídelo en la Gerencia Territorial con una nómina de la Escuela.',p:22,go:'q-s14'},
+  {t:'Pedir la firma electrónica',d:'Tarjeta o certificado digital, a través del CAU de tu comunidad.',p:26,go:'q-s21'},
+  {t:'Darte de alta en gestión procesal y en el visor de vídeos',d:'Y en el órgano de guardia, si haces guardias de otro.',p:27,go:'q-s22'},
+  {t:'Valorar un seguro de responsabilidad civil',d:'Cubre la repetición del Estado en casos de dolo o culpa grave.',p:25,go:'q-s19'},
+  {t:'Pedir al LAJ un certificado de tus resoluciones',d:'Cada vez que dejes un órgano: lo necesitarás para la retribución variable.',p:20,go:'q-s11'},
+  {t:'Rellenar el alta en la APM',d:'Queda en espera hasta que estés en servicio activo, pero ya cuentas con su apoyo.',p:25,go:'asociarse'}]},
+ {id:'chk-lleg',k:'cam-l',n:'Al llegar a mi juzgado',d:'Trámites y comprobaciones del primer mes en tu primer destino.',it:[
+  {t:'Enviar el cese y la toma de posesión a la Gerencia de la Escuela Judicial',d:'También sirven para que te reconozcan los trienios.',p:41,go:'documentacion'},
+  {t:'Enviar copia de la toma de posesión a tu TSJ',p:41,go:'territorio'},
+  {t:'Comunicar la variación de datos a la MUGEJU',d:'Formulario A-1, con la Orden de nombramiento del BOE y la toma de posesión.',p:41,go:'g-mugeju'},
+  {t:'Pedir el carné de juez',d:'Formulario de poderjudicial.es con fotografía, por correo postal al CGPJ.',p:41,go:'g-carne'},
+  {t:'Pedir las altas informáticas al CAU',d:'Perfil de usuario, gestión procesal, firma digital y correo autonómico si lo hay.',p:41,go:'informatica'},
+  {t:'Activar el correo @poderjudicial.es',d:'Guarda antes lo que necesites del correo de la Escuela.',p:42,go:'g-correo'},
+  {t:'Configurar el correo en el móvil',p:42,go:'g-movil'},
+  {t:'Pedir el internet móvil',p:43,go:'g-datos'},
+  {t:'Pedir las normas de reparto, el calendario de guardias y los protocolos del partido',p:45,go:'territorio'},
+  {t:'Revisar causas con preso, jurado, sumarios e intervenciones telefónicas',p:45},
+  {t:'Pedir el listado actualizado de requisitoriados',d:'Aunque el control corresponde al LAJ, conviene revisarlo al llegar y cada cierto tiempo.',p:45,go:'g-requis'},
+  {t:'Comprobar si hay un alarde pendiente',d:'Puede que te presenten el alarde anterior del juzgado para firmarlo.',p:45,go:'alarde'},
+  {t:'Presentarte al Presidente del TSJ, al de la Audiencia, al Decano y a tus compañeros',p:32}]},
+ {id:'chk-carr',k:'cam-c',n:'Mi carrera',d:'Para que trienios, datos y retenciones queden bien desde el principio.',it:[
+  {t:'Recibir el Anexo I y enviar el Anexo II al CGPJ',d:'Así se reconoce tu primer trienio.',p:43,go:'q-p13'},
+  {t:'Si trabajaste antes en otra Administración, pedir su Anexo I',p:43},
+  {t:'Comprobar en la Extranet que el trienio aparece bien',p:44},
+  {t:'Revisar tus datos en «Consulte sus datos»',d:'Destinos, licencias y trayectoria profesional.',p:44,go:'q-p14'},
+  {t:'Revisar la retención del IRPF con la primera nómina',p:44,go:'q-s14'},
+  {t:'Volver a revisar la retención cada enero',p:44},
+  {t:'Elegir tu base de datos jurídica del CENDOJ',p:28,go:'g-bd'}]}
+];
+
+/* ---------- Guías paso a paso ---------- */
+var GUIAS=[
+ {id:'g-correo',n:'Activar el correo @poderjudicial.es',p:42,st:['Espera a que se publique tu nombramiento en el primer destino.','El CAU del CGPJ te enviará usuario, claves y tu nueva dirección.','Durante unos días tendrás las dos cuentas: guarda lo que necesites de la cuenta de la Escuela.','Si tienes problemas, llama al CAU del CENDOJ: <b>943 445 223</b>'+VER+'.']},
+ {id:'g-movil',n:'Configurar el correo en el móvil',p:42,st:['En el móvil, añade una cuenta nueva de tipo <b>Microsoft Exchange</b>.','Escribe tu dirección, usuario, contraseña y nombre de dominio.','Las guías para Android y iPhone están en la Extranet: Escuela Judicial → Soporte a usuarios → Correo electrónico.']},
+ {id:'g-datos',n:'Pedir el internet móvil',p:43,st:['Sirve para entrar en poderjudicial.es y sus aplicaciones fuera del despacho.','Lo más rápido: Extranet de Jueces y Magistrados → «Área Personal + Módem».','También por teléfono: <b>900 87 80 07</b>'+VER+'. Ten a mano tu número de línea de datos (viene en el sobre y en el formulario).']},
+ {id:'g-ainoa',n:'Ver la nómina en Ainoa',p:22,st:['Pide usuario y claves al CAU del Ministerio de Justicia: <b>902 999 724</b> · <b>cau@mju.es</b>'+VER+'.','Entra en Ainoa, el autoservicio del empleado de la Administración de Justicia.','Allí tienes el recibo de nómina, tus datos personales y el certificado de IRPF (modelo 190).']},
+ {id:'g-carne',n:'Pedir el carné de juez',p:41,c:'art. 37 Reglamento 2/2005',st:['Rellena el formulario de poderjudicial.es: datos, motivo y autorización para revocar el certificado de firma si hiciera falta.','Pega una fotografía tamaño carné y fírmalo.','Envíalo por correo postal al CGPJ, Sección de Informática Judicial, C/ Marqués de la Ensenada, 8, 28004 Madrid.','Puede que tu comunidad te dé otra tarjeta con firma para su portafirmas.']},
+ {id:'g-mugeju',n:'Comunicar la variación de datos a la MUGEJU',p:41,go:['e-mug','Contacto de la MUGEJU'],st:['Descarga en mugeju.es el impreso A-1, «Solicitud de afiliación y variación de datos de titulares».','Adjunta la Orden de nombramiento del BOE y la toma de posesión.','Envíalo a la MUGEJU. Repite el trámite en cada cambio de destino.']},
+ {id:'g-bd',n:'Elegir base de datos jurídica',p:28,st:['Compara los contenidos de La Ley Digital, Tirant Online y Westlaw en poderjudicial.es.','Elige solo una: el acceso es personal.','Pide el alta al CENDOJ: <b>basesdedatos@cgpj.es</b>'+VER+'.']},
+ {id:'g-cendoj',n:'Pedir una consulta documental al CENDOJ',p:43,st:['En la Extranet, entra en Servicios → Consultas documentales (CENDOJ).','Pide doctrina, jurisprudencia, legislación o un documento concreto.','Los dosieres que se elaboran están en el portal del CENDOJ → Área personal → Dosieres.']},
+ {id:'g-requis',n:'Pedir el listado de requisitoriados',p:46,st:['Lo más rápido: correo a la Unidad Técnica de Policía Judicial de la Guardia Civil (OESIS): <b>pj-oesis@guardiacivil.es</b>'+VER+'.','Teléfono: <b>91 514 62 81</b>'+VER+'.','También puedes pedirlo a la Comisaría General de Policía Judicial de la Policía Nacional.']},
+ {id:'g-personal',n:'Contactar con el Servicio de Personal Judicial del CGPJ',p:46,st:['Teléfono: <b>91 700 61 75</b>'+VER+'.','Dirección: C/ Marqués de la Ensenada, 8, 28004 Madrid.','Para direcciones y teléfonos de las Gerencias del Ministerio, mira la ficha de Gerencias en Contactos nacionales.']}
+];
+
+/* ---------- Fases del camino ---------- */
+var FASES=[
+ {id:'sust',n:'Sustitución y refuerzo',w:'Mínimo 4 meses, tras las prácticas tuteladas',d:'Ejerces como un titular, a disposición del Presidente de tu TSJ. Cambia el pagador de tu nómina.',l:'cam-s',go:[['sustitucion','Las preguntas de esta fase'],['chk-sust','Lista de inicio']]},
+ {id:'esc',n:'Escalafón y elección de destino',w:'Al final de la fase',d:'Se forma el escalafón y eliges tu primera plaza por videollamada.',go:[['q-p1','El escalafón'],['q-p3','Cómo se elige'],['q-p5','Méritos autonómicos']]},
+ {id:'jura',n:'Cese, despachos y jura',w:'En las fechas que fijen el CGPJ y tu TSJ',d:'Cesas ante el LAJ y el Decano, recibes el despacho y juras ante la Sala de Gobierno.',go:[['q-p6','El cese'],['q-p8','La jura'],['q-p11','Cuánto cobras en el traslado']]},
+ {id:'pos',n:'Toma de posesión',w:'En los 3 días siguientes a la jura',d:'Tomas posesión en tu juzgado y envías las copias del acta.',go:[['plazos','Calcular mi plazo'],['documentacion','Qué enviar y a quién'],['midestino','Configurar Mi destino']]},
+ {id:'lleg',n:'Primeros días en el juzgado',w:'El primer mes',d:'MUGEJU, carné, correo, altas informáticas y lo que debes revisar al llegar.',l:'cam-l',go:[['chk-lleg','Lista de llegada'],['guias','Guías paso a paso']]},
+ {id:'carr',n:'Tu carrera',w:'El primer año y siguientes',d:'Trienios, servicio efectivo y la retención del IRPF de cada enero.',l:'cam-c',go:[['chk-carr','Lista «Mi carrera»'],['q-p13','Trienios']]}
+];
+st.fase=''; try{st.fase=localStorage.getItem('apm-fase')||'';}catch(e){}
+function listaDone(k){var L=LISTAS.filter(function(x){return x.k===k;})[0]; if(!L) return null; var d=0; L.it.forEach(function(_,i){if(st.checks[k+'-'+i]) d++;}); return {d:d,n:L.it.length};}
+function faseIdx(){for(var i=0;i<FASES.length;i++) if(FASES[i].id===st.fase) return i; return -1;}
+
+function faqBlock(groups){
+  var h='';
+  groups.forEach(function(g){
+    h+='<h3 class="k faq-g">'+esc(g.g)+'</h3><div class="faq-list">';
+    g.qs.forEach(function(x){
+      h+='<details class="faq" id="q-'+x.id+'"><summary>'+esc(x.q)+'</summary><ul class="faq-a">'+x.a.map(function(y){return '<li>'+y+'</li>';}).join('')+'</ul>';
+      if(x.apm) h+='<p class="apm-pos"><b>Posición de la APM.</b> '+x.apm+'</p>';
+      h+='<div class="faq-f">'+(x.c?'<span class="cite">'+x.c+'</span>':'')+mref(x.p)+(x.go?jl(x.go[0],x.go[1]):'')+'</div></details>';
+    });
+    h+='</div>';
+  });
+  return h;
+}
+
+function rRuta(s){
+  var cur=faseIdx();
+  var h=secHead(s)+'<p class="body">Del final de la Escuela Judicial a tu carrera, fase a fase. Dinos en qué fase estás: la marcaremos y te diremos qué toca ahora. Se guarda solo en este dispositivo.</p>';
+  h+='<div class="fase-pick" role="group" aria-label="¿En qué fase estás?"><span class="mi-lt">¿En qué fase estás?</span>'+FASES.map(function(f,i){return '<button type="button" data-fase="'+f.id+'" aria-pressed="'+(i===cur)+'">'+(i+1)+'. '+esc(f.n)+'</button>';}).join('')+'</div>';
+  h+='<ol class="ruta">';
+  FASES.forEach(function(f,i){
+    var cls=i===cur?' now':(cur>=0&&i<cur?' past':''), pr=f.l?listaDone(f.l):null;
+    h+='<li class="fase'+cls+'" id="fase-'+f.id+'"><span class="fase-n" aria-hidden="true">'+(cur>=0&&i<cur?'✓':(i+1))+'</span><div class="fase-b"><div class="fase-h"><b>'+esc(f.n)+'</b>'+(i===cur?'<span class="tag-now">Estás aquí</span>':'')+'</div><span class="fase-w">'+esc(f.w)+'</span><p>'+esc(f.d)+'</p>';
+    if(pr) h+='<div class="fase-p"><div class="bar-p"><i style="width:'+Math.round(pr.d/pr.n*100)+'%"></i></div><span class="cnt'+(pr.d===pr.n?' done':'')+'">'+pr.d+'/'+pr.n+'</span></div>';
+    h+='<div class="fase-go">'+f.go.map(function(g){return jl(g[0],g[1]);}).join('')+'</div></div></li>';
+  });
+  h+='</ol><p class="note">Contenido basado en el '+ext(MAN,'Manual de entrada «Tu primer destino» de la APM')+', adaptado y actualizado. Cada respuesta indica la página del Manual y la norma aplicable.</p>';
+  return h;
+}
+function rSust(s){
+  var h=secHead(s)+'<div class="notice"><b>Situación actual.</b> La fase sigue en vigor (art. 307.4 LOPJ): la Promoción 75.ª la desarrolla del 1 de julio al 30 de noviembre de 2026. Hay propuestas para suprimirla: la del Pleno del CGPJ (marzo de 2026) y una proposición de ley del Grupo Popular (BOCG de 12 de junio de 2026), que el Congreso ha admitido a trámite. Si se aprueba, esta sección se actualizará.'+src([S.boe75,S.cgpj307,S.bocg307,S.lt307])+'</div>';
+  h+='<p class="body">Las 31 preguntas del Manual, agrupadas por temas. Como no hay reglamento propio, muchas respuestas aplican por analogía el estatuto de los JAT y JED. Cuando la APM tiene una posición propia, aparece destacada.</p>';
+  return h+faqBlock(SUST);
+}
+function rPd(s){
+  return secHead(s)+'<p class="body">Desde el escalafón hasta los trienios: lo que pasa entre el final de la fase de sustitución y tus primeros meses como titular. Para calcular fechas, usa '+jl('plazos','la calculadora de plazos').replace(' →','')+'.</p>'+faqBlock(PDQ);
+}
+function rListas(s){
+  var h=secHead(s)+'<p class="body">Marca cada paso cuando lo hagas. Las marcas se guardan solo en este navegador.</p><div class="listas">';
+  LISTAS.forEach(function(L){
+    var pr=listaDone(L.k);
+    h+='<div class="lista" id="'+L.id+'"><div class="cese-top"><h4>'+esc(L.n)+'</h4><div class="bar-p big"><i style="width:'+Math.round(pr.d/pr.n*100)+'%"></i></div><span class="cnt'+(pr.d===pr.n?' done':'')+'">'+pr.d+'/'+pr.n+'</span></div><p class="d">'+esc(L.d)+'</p><ol class="cese">';
+    L.it.forEach(function(it,i){var k=L.k+'-'+i,on=!!st.checks[k];
+      h+='<li class="cl-item'+(on?' x':'')+'"><input type="checkbox" id="'+k+'" data-chk="'+k+'"'+(on?' checked':'')+'><div><label for="'+k+'" class="cl-t">'+esc(it.t)+'</label>'+(it.d?'<p>'+esc(it.d)+'</p>':'')+'<div class="faq-f">'+mref(it.p)+(it.go?jl(it.go,'Ver cómo'):'')+'</div></div></li>';});
+    h+='</ol></div>';
+  });
+  return h+'</div>';
+}
+function rGuias(s){
+  var h=secHead(s)+'<p class="body">Los trámites técnicos, paso a paso. Los teléfonos y correos marcados como <span class="verif">pendiente de verificar</span> proceden del Manual: compruébalos antes de usarlos y, si cambian, avísanos con «¿Dato incorrecto?».</p><div class="cards guias">';
+  GUIAS.forEach(function(g){
+    h+='<article class="card guia" id="'+g.id+'"><h4>'+esc(g.n)+'</h4><div class="card-b"><ol class="ph-steps">'+g.st.map(function(x){return '<li>'+x+'</li>';}).join('')+'</ol><div class="faq-f">'+(g.c?'<span class="cite">'+g.c+'</span>':'')+mref(g.p)+(g.go?jl(g.go[0],g.go[1]):'')+'</div></div></article>';
+  });
+  return h+'</div>';
+}
+function rCarta(s){
+  var h=secHead(s)+'<div class="carta"><p class="carta-k">Enhorabuena y bienvenido/a a la Carrera Judicial</p>';
+  h+='<p>La Presidenta de la APM, María Jesús del Barco, abre el Manual de entrada con una felicitación y una idea: este trabajo nació para responder las preguntas que los jueces jóvenes hacían en privado. Cómo pedir un permiso, qué derechos tienes, a quién llamar si surge un problema.</p>';
+  h+='<p>Lo han escrito, de forma desinteresada, muchos compañeros. Y crece con lo que aportan quienes estaban donde tú estás ahora. La APM, dice la carta, se nutre de jueces <i>«vivos, perspicaces, trabajadores y altruistas»</i>. Si quieres, puedes ayudar a seguir ayudando.</p>';
+  h+='<p class="carta-f">María Jesús del Barco Martínez · Presidenta de la APM</p>';
+  h+='<div class="about-act"><a class="act-btn" href="'+MAN+'" target="_blank" rel="noopener">'+ICON.pdf+' Leer el Manual completo (PDF)</a><a class="act-btn ghost" href="#ruta" data-jump="ruta">Ver Mi camino →</a></div>';
+  h+='<p class="d" style="margin-top:12px">¿Quieres colaborar o tienes una duda? Escribe a la APM, aunque no estés asociado.</p>'+lines({ph:APM.sede.ph,em:[APM.sede.em[0]]})+'</div>';
+  return h;
+}
+function camStrip(){
+  var cur=faseIdx(), f=cur>=0?FASES[cur]:null;
+  var dots='<ol class="cs-dots" aria-hidden="true">'+FASES.map(function(x,i){return '<li class="'+(i===cur?'now':(cur>=0&&i<cur?'past':''))+'"></li>';}).join('')+'</ol>';
+  if(!f) return '<a class="cam-strip" href="#ruta" data-jump="ruta"><span class="ti">'+ICON.route+'</span><span class="cs-t"><b>Mi camino</b><span>De la fase de refuerzo a tu carrera, fase a fase. Dinos en cuál estás.</span></span>'+dots+'</a>';
+  var nx=FASES[cur+1], pr=f.l?listaDone(f.l):null;
+  return '<a class="cam-strip on" href="#fase-'+f.id+'" data-jump="fase-'+f.id+'"><span class="ti">'+ICON.route+'</span><span class="cs-t"><b>Mi camino · '+esc(f.n)+'</b><span>'+(pr?pr.d+' de '+pr.n+' pasos hechos'+(nx?' · ':''):'')+(nx?'Después: '+esc(nx.n):'Última fase')+'</span></span>'+dots+'</a>';
+}
+document.addEventListener('click',function(e){
+  var b=e.target.closest&&e.target.closest('[data-fase]'); if(!b) return;
+  var v=b.dataset.fase; st.fase=(st.fase===v)?'':v; try{localStorage.setItem('apm-fase',st.fase);}catch(x){}
+  var y=scrollY; renderSection('ruta'); renderHome(); buildIndex(); scrollTo(0,y);
+  if(st.fase) track('fase/'+st.fase,'Fase: '+st.fase);
+  var nb=document.querySelector('[data-fase="'+v+'"]'); if(nb){try{nb.focus({preventScroll:true});}catch(_e){}}
+});
+INTENTS.push({id:'sust',n:'Estoy en sustitución y refuerzo',go:'sustitucion',steps:['Ejerces como un titular, a disposición del Presidente de tu TSJ. Dura un mínimo de cuatro meses. <span class="cite">art. 307.4 y 5 LOPJ</span>','Cambia el pagador: entrega cuanto antes en la Gerencia Territorial la documentación de la nómina y revisa la retención del IRPF.','Pide la firma electrónica y las altas en gestión procesal. Aún no tendrás correo @poderjudicial.es ni carné de juez.','Tienes la lista de inicio y las 31 preguntas del Manual en «Mi camino».']});
+FAQ_Q.sust='¿Qué tengo que saber de la fase de sustitución y refuerzo?';
+FAQ_ORDER.splice(1,0,'sust');
+
+var R={faq:rFaq,ruta:rRuta,sustitucion:rSust,primerdestino:rPd,listas:rListas,guias:rGuias,carta:rCarta,glosario:rGlos,novedades:rNov,acerca:rAbout,midestino:rMi,informatica:rInfo,apm:rApm,asociarse:rJoin,territorio:rTerr,posesion:rPosesion,cese:rCese,pendientes:rPend,estatal:rEstatal,normativa:rNorm,fuentes:rFuentes};
 function renderSection(id){var s=SECTIONS.filter(function(x){return x.id===id;})[0]; var el=document.getElementById(id); if(el){ el.innerHTML=R[id](s); addReport(el);} if(id==='pendientes') prUpdate();}
 /* ---------- ¿Dato incorrecto? ---------- */
 var REPORT_TO='julio.ruiz@poderjudicial.es';
@@ -932,7 +1220,7 @@ function renderHome(){
    {go:'informatica',ic:'pc',t:'Informática',s:'Aplicaciones y soporte'},
    {go:'estatal',ic:'flag',t:'Contactos nacionales',s:'CGPJ, MUGEJU, PNJ…'}
   ];
-  var h='<div class="tiles">'+tiles.map(function(x){return '<a class="tile'+(x.hl?' hl':'')+'" href="#'+x.go+'" data-jump="'+x.go+'"'+(x.act?' data-act="'+x.act+'"':'')+'><span class="ti">'+ICON[x.ic]+'</span><b>'+esc(x.t)+'</b><span class="ts">'+esc(x.s)+'</span></a>';}).join('')+'</div>';
+  var h=camStrip()+'<div class="tiles">'+tiles.map(function(x){return '<a class="tile'+(x.hl?' hl':'')+'" href="#'+x.go+'" data-jump="'+x.go+'"'+(x.act?' data-act="'+x.act+'"':'')+'><span class="ti">'+ICON[x.ic]+'</span><b>'+esc(x.t)+'</b><span class="ts">'+esc(x.s)+'</span></a>';}).join('')+'</div>';
   if(st.favs.length){ h+='<div class="favs"><div class="favs-h"><b>'+ICON.starf+' Mis contactos</b><span>Guardados en este dispositivo</span></div><div class="favs-g">'+st.favs.slice(0,8).map(function(f){return '<div class="fav"><div class="fav-t"><b>'+esc(f.t)+'</b><button type="button" class="fav-x" data-fav="'+esc(f.k)+'" aria-label="Quitar">×</button></div><div class="lines">'+(f.h||'')+'</div></div>';}).join('')+'</div></div>'; }
   var sec=t?(APM.sec[t.id]||[]):[];
   el.innerHTML=h; h='';
@@ -1088,8 +1376,8 @@ function buildIndex(){
   document.querySelectorAll('main section').forEach(function(sec){
     if(sec.id==='territorio'||sec.id==='informatica') return;
     var shh=sec.querySelector('.sh h2'); if(!shh) return; var sname=shh.textContent;
-    sec.querySelectorAll('.card,.box,.doc,.quote,.callout,p.body,.law li,.cl-item,.gen,.join').forEach(function(el){
-      var head=el.querySelector('h4,.nm,.cl-t,b'); var title=head?head.textContent:sname;
+    sec.querySelectorAll('.card,.box,.doc,.quote,.callout,p.body,.law li,.cl-item,.gen,.join,details.faq,.carta').forEach(function(el){
+      var head=el.querySelector('summary,h4,.nm,.cl-t,b'); var title=head?head.textContent:sname;
       var txt=el.textContent.replace(/\s+/g,' ').trim(); if(!el.id) el.id='ix'+(n++);
       IDX.push({sec:sname,title:title,txt:txt,n:norm(txt+' '+txt.replace(/(\d)\s(?=\d)/g,'$1')),go:el.id});
     });
@@ -1125,7 +1413,7 @@ function doSearch(){
   status.textContent=hits.length?(hits.length+' resultados encontrados'):'Sin resultados';
 }
 function motionBehavior(){return window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth';}
-function goTo(id){var el=ensureView(id); if(!el) return; el.scrollIntoView({behavior:motionBehavior(),block:'center'}); el.classList.remove('flash'); void el.offsetWidth; el.classList.add('flash');}
+function goTo(id){var el=ensureView(id); if(!el) return; if(el.tagName==='DETAILS') el.open=true; var pd=el.parentElement&&el.parentElement.closest?el.parentElement.closest('details'):null; if(pd) pd.open=true; el.scrollIntoView({behavior:motionBehavior(),block:'center'}); el.classList.remove('flash'); void el.offsetWidth; el.classList.add('flash');}
 function setTerr(v){ if(v) track('territorio/'+v,'Territorio: '+(v==='esp'?'España':((TSJ.filter(function(x){return x.id===v;})[0]||{}).n||v)));st.terr=v; try{localStorage.setItem('apm-terr',v);}catch(x){} renderSection('territorio'); renderSection('informatica'); renderSection('posesion'); prUpdate(); renderAnswer(); var s0=document.getElementById('selTerr0'); if(s0) s0.value=v||''; paintMap(); renderSection('midestino'); renderHome(); buildIndex();}
 
 /* ================= events ================= */
@@ -1201,7 +1489,7 @@ document.addEventListener('click',function(e){
   if(b.dataset.themeSet){ st.pref.theme=b.dataset.themeSet; try{localStorage.setItem('apm-pref',JSON.stringify(st.pref));}catch(x){} applyPrefs(); renderSection('acerca'); return;}
   if(b.dataset.sizeSet){ st.pref.size=b.dataset.sizeSet; try{localStorage.setItem('apm-pref',JSON.stringify(st.pref));}catch(x){} applyPrefs(); renderSection('acerca'); return;}
   if(b.dataset.evics!==undefined){ var ev=upcomingEvents()[+b.dataset.evics]; if(ev) saveFile((ev.sesiones?'Jornadas_APM':'Actividad_APM')+'.ics','text/calendar;charset=utf-8',eventICS(ev)); return;}
-  if(b.dataset.welc){ var w=b.dataset.welc; hideWelcome(); if(w==='terr') goTo('selTerr0'); else if(w==='mi'){ st.mi=st.mi||{}; if(!st.mi.fecha) st.mi.modo='first'; miSave(); miRefresh(); goTo('midestino'); } else if(w==='inst') showInstall(true); else if(w==='apm') goTo('asociarse'); return;}
+  if(b.dataset.welc){ var w=b.dataset.welc; hideWelcome(); if(w==='terr') goTo('selTerr0'); else if(w==='mi'){ st.mi=st.mi||{}; if(!st.mi.fecha) st.mi.modo='first'; miSave(); miRefresh(); goTo('midestino'); } else if(w==='inst') showInstall(true); else if(w==='apm') goTo('asociarse'); else if(w==='camino') goTo('ruta'); return;}
   if(b.dataset.mimodo){ st.mi=st.mi||{}; st.mi.modo=b.dataset.mimodo; miSave(); miRefresh(); return;}
   if(b.dataset.miedit){ st.miEdit=!st.miEdit; st.miDirty=false; renderSection('midestino'); return;}
   if(b.dataset.miclear){ if(confirm('¿Borrar los datos de «Mi destino» de este dispositivo?')){ st.mi=null; st.miEdit=false; try{localStorage.removeItem('apm-mi');}catch(x){} miRefresh(); } return;}
@@ -1223,7 +1511,7 @@ document.addEventListener('change',function(e){
   var mk=e.target.dataset&&e.target.dataset.mi; if(mk){ st.mi=st.mi||{modo:'first'}; st.mi[mk]=e.target.type==='checkbox'?e.target.checked:e.target.value; miSave(); if(e.target.type==='text'){ miChip(); var who=document.querySelector('#midestino .mi-who'); if(who&&st.mi.fecha){ st.miDirty=true; } return;} var y=scrollY; miRefresh(); scrollTo(0,y); if(mk==='fecha'&&st.mi.fecha) track('evento/mi-destino','Mi destino configurado'); return;}
   if(e.target.id==='selTerr0'){setTerr(e.target.value); if(e.target.value==='esp'){var es=ensureView('estatal'); if(es) setTimeout(function(){es.scrollIntoView({behavior:motionBehavior()});},50);} return;}
   var k=e.target.dataset&&e.target.dataset.chk;
-  if(k){st.checks[k]=e.target.checked; try{localStorage.setItem('apm-checks',JSON.stringify(st.checks));}catch(x){} var y=scrollY; renderSection(k.indexOf('cese-')===0?'cese':(k.indexOf('loc-')===0?'informatica':'posesion')); buildIndex(); scrollTo(0,y); var el=document.getElementById(k); if(el){try{el.focus({preventScroll:true});}catch(_e){el.focus();}} return;}
+  if(k){st.checks[k]=e.target.checked; try{localStorage.setItem('apm-checks',JSON.stringify(st.checks));}catch(x){} var y=scrollY; if(k.indexOf('cam-')===0){renderSection('ruta'); renderHome();} renderSection(k.indexOf('cam-')===0?'listas':k.indexOf('cese-')===0?'cese':(k.indexOf('loc-')===0?'informatica':'posesion')); buildIndex(); scrollTo(0,y); var el=document.getElementById(k); if(el){try{el.focus({preventScroll:true});}catch(_e){el.focus();}} return;}
   if(e.target.id==='tlDate'){ if(e.target.value) st.date=e.target.value; var y2=scrollY; renderSection('posesion'); buildIndex(); scrollTo(0,y2); return;}
   if(e.target.id==='tlSameCity'){st.sameCity=e.target.checked; var y3=scrollY; renderSection('posesion'); buildIndex(); scrollTo(0,y3); return;}
 });
